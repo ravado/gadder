@@ -1,0 +1,4 @@
+application/cache/
+application/logs/
+
+.DS_Store
