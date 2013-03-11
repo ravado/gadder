@@ -1,0 +1,211 @@
+#content {
+    width: 1000px;
+    margin: 40px  auto;
+    background-color: #ffffff;
+    border: 1px solid #ececec;
+    min-height: 100%;
+    padding: 15px;
+}
+body,html {
+    height: 100%;
+    background-color: #ccc;
+}
+
+/* Таблица со списком игр */
+.game-list {
+
+}
+#dv-auth {
+    width: 225px;  height: 190px; padding: 20px; margin: 10% auto; border: 1px solid #ccc; border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    0px 0px 8px rgba(50, 50, 50, 0.75);
+    box-shadow:         0px 0px 8px rgba(50, 50, 50, 0.75);
+}
+#game-sort {
+    margin-left: 10px;
+}
+#game-sort > li {
+    margin-right: 5px;
+    display: inline-block;
+}
+#game-sort > li.divider {
+    color: #ccc;
+}
+#game-sort > li a {
+    text-decoration: none;
+}
+#game-sort > li a.active {
+    color: #000;
+    opacity: 0.5;
+}
+.game-list .id-game {
+    font-size: 12px;
+    width: 20px;
+    text-align: center;
+}
+td.id-games, td.img-count {
+    color: #646464;
+}
+.game-list .title-game {
+    font-size: 12px;
+    width: 700px;
+}
+.game-list .img-count {
+    font-size: 12px;
+    text-align: center;
+    width: 20px;
+}
+.game-list .get-game-code {
+    width: 80px;
+}
+.content > div {
+    margin-bottom: 15px;
+}
+
+.dv-block header {
+    height: 30px;
+    margin-bottom: 20px;
+}
+.dv-block.add-game {
+    padding: 30px;
+}
+
+.ch-genre, .ch-mode{
+    display: none;
+}
+.engl-title {
+    color: #5fb3ce;
+}
+.rus-title {
+    margin-left: 10px;
+    color: orange;
+}
+span.game-genre {
+    line-height: 28px;
+    padding: 3px 5px;
+    border-radius: 2px;
+    margin-right: 1px;
+    background-color: #32b1f7;
+    color: white;
+    cursor: pointer;
+}
+span.game-genre:hover {
+    text-shadow: 0px 0px 1px rgba(255, 255, 255, 1);
+}
+span.game-genre.active {
+    background-color: #05507b
+}
+#game-review {
+    float: left;
+}
+#speller {
+
+    margin-left: 10px;
+    float: left;
+}
+#speller #words-variants {
+    padding: 5px;
+    min-height: 100px;
+    width: 160px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+#game-review #editable-txt-review {
+    padding: 5px;
+    min-height: 100px;
+    width: 740px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.word-variants {
+    font-size: 12px;
+    padding: 5px;
+    color: red;
+    font-weight: bold;
+}
+a.variant-word {
+    display: block;
+    padding: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+a.variant-word:hover {
+    text-decoration: none;
+    background-color: #eeeeee;
+}
+span.game-mode {
+    padding: 3px 5px;
+    border-radius: 2px;
+    margin-right: 3px;
+    background-color: #ffb733;
+    color: white;
+    cursor: pointer;
+}
+span.game-mode:hover {
+    text-shadow: 0px 0px 1px rgba(255, 255, 255, 1);
+}
+span.game-mode.active {
+    background-color: #996300
+}
+
+.dv-genre, .dv-mode, .dv-review {
+}
+.dv-review {
+    margin-bottom: 20px;
+}
+.content h5{
+    line-height: 30px;
+}
+
+.dv-review #txt-review {
+    width: 100%;
+    min-height: 100px;
+}
+
+.icon-loading {
+    margin-left: 5px;
+    display: none;
+}
+.status {
+    padding: 0 0 0 20px;
+    margin-left: 5px;
+    color: green;
+    display: none;
+    background-image: url("../img/ok.png");
+    background-repeat: no-repeat;
+    background-position: left top;
+    vertical-align: middle;
+}
+.tcentered {
+    text-align: center !important;
+}
+.inline {
+    /*float: left !important;*/
+    display: inline-block;
+}
+.margin-right-10 {
+    margin-right: 10px;
+}
+
+.uncheck-all {
+    margin-left: 10px;
+}
+.uncheck-all, .uncheck-all:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* информация о количестве введенных символов */
+#char-info {
+    color: #a2a2a2;
+    float: left;
+    padding-top: 10px;
+}
+#char-count {
+    color: #222;
+    font-weight: bold;
+}
+
+.posted {
+    width: 10px;
+}
