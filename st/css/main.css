@@ -13,7 +13,7 @@ body,html {
 
 /* Таблица со списком игр */
 .game-list {
-
+    margin-bottom: 10px;
 }
 #dv-auth {
     width: 225px;  height: 190px; padding: 20px; margin: 10% auto; border: 1px solid #ccc; border-radius: 5px;
@@ -21,20 +21,20 @@ body,html {
     -moz-box-shadow:    0px 0px 8px rgba(50, 50, 50, 0.75);
     box-shadow:         0px 0px 8px rgba(50, 50, 50, 0.75);
 }
-#game-sort {
+.game-menu {
     margin-left: 10px;
 }
-#game-sort > li {
+.game-menu > li {
     margin-right: 5px;
     display: inline-block;
 }
-#game-sort > li.divider {
+.game-menu > li.divider {
     color: #ccc;
 }
-#game-sort > li a {
+.game-menu > li a {
     text-decoration: none;
 }
-#game-sort > li a.active {
+.game-menu > li a.active {
     color: #000;
     opacity: 0.5;
 }

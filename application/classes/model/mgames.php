@@ -73,24 +73,41 @@ class Model_Mgames extends Model_Database {
         }
     }
 
-    public function setGameStatus($id, $posted) {
-        $result = false;
-        if($posted == "yes") {
-            $status = '1';
-        } elseif( $posted == "no") {
-            $status = '0';
-        }
-        $game = ORM::factory('ormgame',$id);
-        if ($game->loaded()) {
-            echo 'status is' .$status;
-            $game->is_posted = $status;
-            $game->save();
-            if($game->saved()) {
-                return true;
-            }
-        }
+    public function setGameStatus($games_id, $posted) {
+        try {
+            $games_id = (array)$games_id;
 
-        return $result;
+            if($posted == "yes") { $status = '1';}
+            elseif( $posted == "no") { $status = '0';}
+
+            foreach ($games_id as $val) {
+                $game = ORM::factory('ormgame', (int)$val);
+                if ($game->loaded()) {
+                    $game->is_posted = $status;
+                    $game->save();
+                }
+            }
+        } catch(Exception $ex) {
+            return false;
+        }
+        return true;
+    }
+
+    // Удаление игр из базы данных
+    public function deleteGames($games_id) {
+        try {
+            $games_id = (array)$games_id;
+
+            foreach ($games_id as $val) {
+                $game = ORM::factory('ormgame', (int)$val);
+                if ($game->loaded()) {
+                    $game->delete();
+                }
+            }
+        } catch(Exception $ex) {
+            return false;
+        }
+        return true;
     }
 
 }

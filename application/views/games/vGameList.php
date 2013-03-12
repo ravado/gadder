@@ -2,7 +2,7 @@
 $ext_orderby = '';
 ?>
 <nav>
-    <ul id="game-sort">
+    <ul class="game-menu">
         <li><a href="?&sort=new" class="<? if($sort == 'new') echo 'active'; ?> "><i class="icon-inbox"></i> новые</a></li>
         <li><a href="?&sort=posted" class="<? if($sort == 'posted') echo 'active'; ?>"><i class="icon-flag"></i> опубликованые</a></li>
     </ul>
@@ -21,7 +21,7 @@ $ext_orderby = '';
         <? foreach($games as $game): ?>
         <tr>
             <td class="tcentered id-games"><?=$game->id_game;?><input type="hidden" class="hGameId" value="<?=$game->id_game;?>"></td>
-            <td class="tcentered is-posted"><input type="checkbox" value="<?=$game->id_game;?>" class="check-as-posted"></td>
+            <td class="tcentered is-posted"><input type="checkbox" value="<?=$game->id_game;?>" class="game-action"></td>
             <td>
                 <span class="engl-title"> <? if(!$game->is_checked) echo '<i class="icon-refresh"></i>  '; ?><?=$game->title;?></span>
                 <span class="rus-title"><?=$game->title_rus;?></span>
@@ -34,6 +34,15 @@ $ext_orderby = '';
         <? endforeach;?>
     </tbody>
 </table>
+<nav>
+    <ul class="game-menu">
+        <li><a class="remove-games"><i class="icon-trash"></i> удалить</a></li>
+        <li><a class="mark-as-published"><i class="icon-trash"></i> опубликована</a></li>
+    </ul>
+</nav>
+
+
+<!--  pagination  -->
 <? if($pages > 1) :?>
 <div class="pagination pagination-centered">
     <ul>
@@ -44,12 +53,12 @@ $ext_orderby = '';
         <?
         $start = 0;
         $end = $pages;
-        if(($page - 4) > 1) {
+        if(($page - 10) > 1) {
             echo '<li class="active"><a>...</a></li>';
-            $start = ($page - 5);
+            $start = ($page - 11);
         }
-        if(($page + 4) < $pages) {
-            $end = ($page + 4);
+        if(($page + 10) < $pages) {
+            $end = ($page + 10);
         }
         ?>
         <? for($i = $start; $i < $end; $i++): ?>
@@ -57,7 +66,7 @@ $ext_orderby = '';
             echo '<li class="active"><a>'.$page .'</a></li>';
         } else if($i >= 0 && $i < $pages) echo '<li><a href="'.$extra_tags .'&page=' .($i+1) .'">' .($i+1) .'</a></li>'; ?>
         <? endfor; ?>
-        <? if($page + 4 < ($pages)) echo '<li class="active"><a>...</a></li>'; ?>
+        <? if($page + 10 < ($pages)) echo '<li class="active"><a>...</a></li>'; ?>
         <? if($page < $pages) echo '<li><a href="'.$extra_tags .'&page=' .($page + 1) .'">»</a></li>'; else echo ''?>
 
     </ul>

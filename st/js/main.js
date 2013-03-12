@@ -3,6 +3,7 @@ function isset(variable) {
     return (typeof(variable) !== 'undefined');
 }
 
+// Конвертация названия меток в url
 function labels(label) {
 
     var clear_label = label.toLowerCase();
@@ -42,7 +43,7 @@ function countCharacters(object) {
     }
 }
 
-
+// Подготавливаем введенные данные для записи в БД
 function getFormatedGame(id_game,callback) {
     var game_data = getGameById(id_game, function(result) {
         if(result) {
@@ -260,11 +261,10 @@ function drawGames(games) {
     });
 }
 
-
-//
+// Отметка игр как опубликованых
 function markGameStatus(parametrs, callback) {
 
-    $.ajax({type:"POST", async:true, data: parametrs, url: "/hidden/setGameStatus", dataType:"json",
+    $.ajax({type:"POST", async:false, data: parametrs, url: "/hidden/setGameStatus", dataType:"json",
         success:function(data) {
             console.log(data);
             if(data.status == 'ok') {
@@ -273,7 +273,24 @@ function markGameStatus(parametrs, callback) {
                 callback(false);
             }
         },
-        error:function(){
+        error:function() {
+            alert('error in ajax');
+            callback(false);
+        }
+    });
+}
+
+// Удаление отмеченных игр из базы данных
+function deleteGames(games_id, callback) {
+    var data = {games_id:null}; data.games_id = games_id;
+    $.ajax({type:"POST", async:false, data: data, url: "/hidden/delGames", dataType:"json",
+        success:function(data) {
+            console.log(data);
+            if(data.status == 'ok') callback(true);
+            else callback(false);
+        },
+        error:function() {
+            alert('error in ajax');
             callback(false);
         }
     });
@@ -286,7 +303,34 @@ $(document).ready(function() {
     // Снимаем галочки с чекбоксов принужденно
     $(".game-list .check-as-posted").removeAttr('checked');
 
-    // Нажатие клавиш в поле для воода обзоро игры
+    // Удаление отмеченых игр из базы данных
+    $(".remove-games").click(function() {
+        var games_id = [], checked_games = $(".game-action:checked");
+        checked_games.each(function(index, item) {
+
+            // Записываем id каждой выбранной игры в массив
+            games_id.push($(item).val());
+        });
+
+        console.log(games_id);
+        deleteGames(games_id, function(status) {
+            if(status == true) {
+                console.log("Игра была успешно удалена.");
+                checked_games.each(function(index, item) {
+                    $(item).closest('tr').fadeOut(500, function() {
+                        $(this).remove();
+                    });
+                });
+            } else {
+                console.log("Игра не была удалена.");
+                checked_games.each(function(index, item) {
+                    $(item).removeAttr('checked');
+                });
+            }
+        });
+    });
+
+    // Нажатие клавиш в поле для ввода обзора игры
     $("#editable-txt-review").keyup(function() {
         var char_count = countCharacters($(this));
         if( char_count != false ) {
@@ -294,23 +338,32 @@ $(document).ready(function() {
         }
     });
 
-
     // Отметка игры как уже опубликованой
-    $(".check-as-posted").on("change", function() {
-        var game_id = $(this).val();
-        if($(this).attr('checked')) {
-            markGameStatus({game_id:game_id, posted:"yes"}, function(status) {
-                if(status == false) {
-                    $(this).removeAttr('checked');
-                }
-            });
-        } else {
-            markGameStatus({game_id:game_id, posted:"no"}, function(status) {
-                if(status == false) {
-                    $(this).attr('checked','checked');
-                }
-            });
-        }
+    $(".mark-as-published").on("click", function() {
+        var games_id = [], checked_games = $(".game-action:checked");
+        checked_games.each(function(index, item) {
+
+            // Записываем id каждой выбранной игры в массив
+            games_id.push($(item).val());
+        });
+
+        console.log(games_id);
+        markGameStatus({games_id:games_id, posted:"yes"}, function(status) {
+            if(status == false) {
+                console.log("Не удалось отметить запись как опубликованую")
+                checked_games.each(function(index, item) {
+                   $(item).removeAttr('checked');
+                });
+            }
+            else {
+                console.log("Запись успешно отмечена как опубликованная");
+                checked_games.each(function(index, item) {
+                   $(item).closest('tr').fadeOut(500, function() {
+                       $(this).remove();
+                   });
+                });
+            }
+        });
     });
 
     $("#to-redact-review").click(function() {
@@ -324,6 +377,7 @@ $(document).ready(function() {
             $("#editable-txt-review").attr('contenteditable','true');
         }
     });
+
     $("#btn-check-text").click(function() {
         var val = {text:'',lang:'ru,en'};
         val.text = $("#editable-txt-review").text();
@@ -410,7 +464,6 @@ $(document).ready(function() {
         $("#game-text").focus();
     });
 
-
     // Выбор жанра игры
     $(".game-genre").click(function() {
         if($(this).hasClass('active')) {
@@ -495,8 +548,6 @@ $(document).ready(function() {
         });
 
     });
-
-
 
     // Проверка текста на орфографию
     $(".is-checked").live('click',function() {

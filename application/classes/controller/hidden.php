@@ -55,9 +55,20 @@ class Controller_Hidden extends Controller{
     }
 
     public function action_setGameStatus() {
-        $id = (int)$_POST['game_id'];
+        $games_id = (array)$_POST['games_id'];
         $posted = $_POST['posted'];
-        $returned = Model::factory('Mgames')->setGameStatus($id, $posted);
+        $returned = Model::factory('Mgames')->setGameStatus($games_id, $posted);
+        if($returned) {
+            $result['status'] = 'ok';
+        } else {
+            $result['status'] = 'bad';
+        }
+        echo json_encode($result);
+    }
+
+    public function action_delGames() {
+        $games_id = (array)$_POST['games_id'];
+        $returned = Model::factory('Mgames')->deleteGames($games_id);
         if($returned) {
             $result['status'] = 'ok';
         } else {

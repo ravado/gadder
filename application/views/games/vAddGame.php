@@ -22,6 +22,21 @@
             <div class="inline margin-right-10">
                 <h5>Картинок</h5>
                 <select id="img-count" class="span1">
+                    <option value="20">20</option>
+                    <option value="19">19</option>
+                    <option value="18">18</option>
+                    <option value="17">17</option>
+                    <option value="16">16</option>
+                    <option value="15">15</option>
+                    <option value="14">14</option>
+                    <option value="13">13</option>
+                    <option value="12">12</option>
+                    <option value="11">11</option>
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
                     <option value="5">5</option>
                     <option value="4">4</option>
                     <option value="3">3</option>
@@ -45,6 +60,7 @@
             <span class="game-genre"><input type="checkbox" class="ch-genre" name="genre" value="драка">Драка</span>
             <span class="game-genre"><input type="checkbox" class="ch-genre" name="genre" value="квест">Квест</span>
             <span class="game-genre"><input type="checkbox" class="ch-genre" name="genre" value="логическая">Логическая</span>
+            <span class="game-genre"><input type="checkbox" class="ch-genre" name="genre" value="настольная">Настольная</span>
             <span class="game-genre"><input type="checkbox" class="ch-genre" name="genre" value="платформер">Платформер</span>
             <span class="game-genre"><input type="checkbox" class="ch-genre" name="genre" value="приключение">Приключение</span>
             <span class="game-genre"><input type="checkbox" class="ch-genre" name="genre" value="ролевая">Ролевая</span>
@@ -55,7 +71,6 @@
             <span class="game-genre"><input type="checkbox" class="ch-genre" name="genre" value="экшн">Экшн</span>
             <span class="game-genre"><input type="checkbox" class="ch-genre" name="genre" value="пистолет">Для пистолета</span>
             <span class="game-genre"><input type="checkbox" class="ch-genre" name="genre" value="хоррор">Хоррор</span>
-            <span class="game-genre"><input type="checkbox" class="ch-genre" name="genre" value="квест">Квест</span>
             <span class="game-genre"><input type="checkbox" class="ch-genre" name="genre" value="пазл">Пазл</span>
         </div>
         <div class="dv-mode">
