@@ -81,6 +81,8 @@ class Controller_Games extends Controller_Base {
             $this->request->redirect('/auth/login');
         }
 
+        $data['checked_count'] = ORM::factory('ormgame')->where('is_checked','=','1')->count_all();
+        $data['remain_to_check'] = ORM::factory('ormgame')->where('is_checked','=','0')->count_all();
         $data['games'] = ORM::factory('ormgame')->where('is_checked','=','0')->limit(20)->find_all();
         $this->template->content = View::factory('games/vCheckGames',$data);
     }

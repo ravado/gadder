@@ -1,3 +1,8 @@
+<div class="check-info">
+    Проверно игр: <span><?=$checked_count?></span>
+    Осталось: <span><?=$remain_to_check;?></span>
+</div>
+
 <?foreach($games as $game):?>
     <div class="content" style="margin: 0 auto 30px auto;">
         <div>

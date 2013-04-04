@@ -209,3 +209,13 @@ span.game-mode.active {
 .posted {
     width: 10px;
 }
+
+
+/* информация о количестве оставшихся для проверки игр */
+.check-info {
+    color: #898989;
+}
+.check-info span {
+    color: #3f9cfa;
+    font-weight: bold;
+}
